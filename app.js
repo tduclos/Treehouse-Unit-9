@@ -15,6 +15,10 @@ const app = express();
 // setup morgan which gives us http request logging
 app.use(morgan('dev'));
 
+//models
+const User = require('./models').User;
+const Course = require('./models').Course;
+
 //authentication
 
 const sequelize = new Sequelize('sqlite::memory:')
