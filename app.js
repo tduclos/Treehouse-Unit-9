@@ -37,6 +37,12 @@ async function authenticate () {
 
 authenticate();
 
+//MASSIVE shoutouts to Juan L on the FSJS Slack for reminding me I need to use and not just require my routes
+
+app.use(bodyParser.json());
+
+app.use(courseRoutes, userRoutes);
+
 // setup a friendly greeting for the root route
 app.get('/', (req, res) => {
   res.json({
