@@ -20,6 +20,8 @@ const User = require('./models').User;
 const Course = require('./models').Course;
 
 //authentication
+const userRoutes = require('./routes/userRoutes');
+const courseRoutes = require('./routes/courseRoutes');
 
 const sequelize = new Sequelize('sqlite::memory:')
 
@@ -33,8 +35,6 @@ async function authenticate () {
 }
 
 authenticate();
-
-// TODO setup your api routes here
 
 // setup a friendly greeting for the root route
 app.get('/', (req, res) => {
