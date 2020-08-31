@@ -39,17 +39,13 @@ router.get('/courses', asyncHandler(async (req, res, next) => {
 
 //GET specific course
 router.get('/courses/:id', asyncHandler(async (req, res, next) => {
-    const course = await Course.findByPk(req.params.id, {
-      attributes: { exclude: ['createdAt', 'updatedAt'] }
-    });
-    console.log(course);
-    res.json({ course });
-  }));
+
+}));
   
 //POST New Course 
 router.post('/courses', [], asyncHandler(async (req, res, next) => {
   
-  }));
+}));
 
 
 //PUT course updates
@@ -60,6 +56,6 @@ router.put('/api/courses/:id', asyncHandler(async (req, res, next) => {
 //DELETE a course
 router.delete('/api/courses/:id', asyncHandler(async (req ,res) => {
 
-  }));
+}));
 
 module.exports = router;
