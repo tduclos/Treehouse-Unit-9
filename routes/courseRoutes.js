@@ -17,10 +17,8 @@ function asyncHandler(callback){
     }
   }
 
-  
-
 //GET all courses
-router.get('/courses', asyncHandler(async (req, res, next) => {
+router.get('/api/courses', asyncHandler(async (req, res, next) => {
   const courses = await Course.findAll({
     include: [
       {
@@ -38,12 +36,12 @@ router.get('/courses', asyncHandler(async (req, res, next) => {
 }));
 
 //GET specific course
-router.get('/courses/:id', asyncHandler(async (req, res, next) => {
+router.get('/api/courses/:id', asyncHandler(async (req, res, next) => {
 
 }));
   
 //POST New Course 
-router.post('/courses', [], asyncHandler(async (req, res, next) => {
+router.post('/api/courses', [], asyncHandler(async (req, res, next) => {
   
 }));
 

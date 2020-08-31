@@ -19,12 +19,13 @@ app.use(morgan('dev'));
 const User = require('./models').User;
 const Course = require('./models').Course;
 
-//authentication
+//routes
 const userRoutes = require('./routes/userRoutes');
 const courseRoutes = require('./routes/courseRoutes');
 
 const sequelize = new Sequelize('sqlite::memory:')
 
+//authentication
 async function authenticate () {
   try {
     await sequelize.authenticate();

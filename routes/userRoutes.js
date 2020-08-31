@@ -18,13 +18,13 @@ function asyncHandler(callback){
   }
 
 //GET User
-router.get('/users/', asyncHandler(async (req, res, next) => {
+router.get('/api/users/', asyncHandler(async (req, res, next) => {
 
 }));
   
 
 //POST New user
-router.post('/users/', [], asyncHandler(async (req, res, next) => {
+router.post('/api/users/', [], asyncHandler(async (req, res, next) => {
  
 }));
 
