@@ -118,7 +118,7 @@ router.put('/api/courses/:id', authenticateUser, asyncHandler(async (req, res, n
   console.log(course.userId);
   if (user.id === course.userId) {
     if (req.body.title === undefined || req.body.description === undefined) {  
-      res.status(400).send({ error: 'Please provide a valid for the title and the description'});
+      res.status(400).send({ error: 'Please include a title and description with your PUT request'});
     } else {
       await course.update(req.body);
       res.sendStatus(204);
