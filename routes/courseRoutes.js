@@ -101,11 +101,14 @@ check('description')
   if (!errors.isEmpty()) {
     const errorMessages = errors.array().map(error => error.msg);
     return res.status(401).json({ errors: errorMessages });
-    const course = await Course.create(req.body);
-    coursesArray.push(course);
-    console.log(course);
-    return res.status(201).end();
-  }));
+  }
+  
+  const course = await Course.create(req.body);
+  coursesArray.push(course);
+  console.log(course);
+  return res.status(201).end();
+  
+}));
 
 //PUT course updates
 router.put('/api/courses/:id', authenticateUser, asyncHandler(async (req, res, next) => {
