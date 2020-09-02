@@ -77,7 +77,7 @@ router.get('/api/courses', asyncHandler(async (req, res, next) => {
 }));
 
 //GET specific course
-router.get('/courses/:id', asyncHandler(async (req, res, next) => {
+router.get('/api/courses/:id', asyncHandler(async (req, res, next) => {
     const course = await Course.findByPk(req.params.id, {
       attributes: { exclude: ['createdAt', 'updatedAt'] }
     });
@@ -85,7 +85,7 @@ router.get('/courses/:id', asyncHandler(async (req, res, next) => {
     res.json({ course });
   }));
   
-//POST New Course 
+//POST New Course (Header is not being set- needs fixing)
 router.post('/api/courses', [
   check('title')
   .exists({ checkNull: true, checkFalsy: true })
@@ -110,7 +110,7 @@ check('description')
   
 }));
 
-//PUT course updates
+//PUT course updates (Returning a 500 and not the expected 400 error)
 router.put('/api/courses/:id', authenticateUser, asyncHandler(async (req, res, next) => {
   console.log('Starting');
   let user = req.currentUser;
