@@ -85,7 +85,7 @@ router.get('/api/courses/:id', asyncHandler(async (req, res, next) => {
     res.json({ course });
   }));
   
-//POST New Course (Header is not being set- needs fixing)
+//POST New Course (Header is not being set; I think this is fixed now?)
 router.post('/api/courses', [
   check('title')
   .exists({ checkNull: true, checkFalsy: true })
@@ -105,6 +105,7 @@ check('description')
   
   const course = await Course.create(req.body);
   coursesArray.push(course);
+  res.location('/api/courses/' + course.id); //I think this is the only change I need? Please let me know.
   console.log(course);
   return res.status(201).end();
   
@@ -124,7 +125,7 @@ router.put('/api/courses/:id', authenticateUser, asyncHandler(async (req, res, n
       res.sendStatus(204);
     }
   } else {
-    res.status(403).send({ error: 'This user does not own this course'});
+    res.status(403).send({ error: 'You do not have access to this course'});
   }
 }));
 
@@ -136,7 +137,7 @@ router.delete('/api/courses/:id', authenticateUser, asyncHandler(async (req ,res
           course.destroy();
           res.sendStatus(204);
         } else {
-          res.status(403).send({ error: 'You does not have access to this course'});
+          res.status(403).send({ error: 'You do not have access to this course'});
         }
   }));
 
