@@ -85,7 +85,7 @@ router.post('/api/users', [
     .withMessage('Please include a last name with your POST request'),
   check('emailAddress')
     .exists({ checkNull: true, checkFalsy: true })
-    .withMessage('Please include an email addresswith your POST request'),
+    .withMessage('Please include an email address with your POST request'),
   check('password')
     .exists({ checkNull: true, checkFalsy: true })
     .withMessage('Please include a password with your POST request'),
@@ -105,8 +105,7 @@ router.post('/api/users', [
     });
     let foundUserEmails = JSON.stringify(currentUsers);
     if (user.emailAddress === foundUserEmails) {
-      console.log('There is already a user associated with this e-mail address')
-      return res.status(500).end();
+      res.status(400).send({ error: 'There is already a user associated with this e-mail address'});
     } else {
       users.push(user);
       res.location('/');

@@ -76,7 +76,7 @@ router.get('/api/courses', asyncHandler(async (req, res, next) => {
     res.json({ courses });
 }));
 
-//GET specific course
+//GET specific course (Error from the first attempt has been resolved)
 router.get('/api/courses/:id', asyncHandler(async (req, res, next) => {
     const course = await Course.findByPk(req.params.id, {
       attributes: { exclude: ['createdAt', 'updatedAt'] }
