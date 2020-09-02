@@ -105,7 +105,7 @@ router.post('/api/users', [
     });
     let foundUserEmails = JSON.stringify(currentUsers);
     if (user.emailAddress === foundUserEmails) {
-      res.status(400).send({ error: 'There is already a user associated with this e-mail address'});
+      res.status(400).send({ error: 'There is already a user associated with this e-mail address'}); //updated this for consistency to be safe
     } else {
       users.push(user);
       res.location('/');

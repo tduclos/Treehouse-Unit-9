@@ -76,7 +76,7 @@ router.get('/api/courses', asyncHandler(async (req, res, next) => {
     res.json({ courses });
 }));
 
-//GET specific course (Error from the first attempt has been resolved)
+//GET specific course (The route was mistyped on the first attempt, I'm confident it's fixed now.)
 router.get('/api/courses/:id', asyncHandler(async (req, res, next) => {
     const course = await Course.findByPk(req.params.id, {
       attributes: { exclude: ['createdAt', 'updatedAt'] }
@@ -105,13 +105,13 @@ check('description')
   
   const course = await Course.create(req.body);
   coursesArray.push(course);
-  res.location('/api/courses/' + course.id); //I think this is the only change I need? Please let me know.
+  res.location('/api/courses/' + course.id); //I think this is the only change I need? Please let me know!
   console.log(course);
   return res.status(201).end();
   
 }));
 
-//PUT course updates (Returning a 500 and not the expected 400 error)
+//PUT course updates (Allegedly, this is returning a 500 on the 'incomplete info' request and not the expected 400 error, but I can't replicate the issue on my system.)
 router.put('/api/courses/:id', authenticateUser, asyncHandler(async (req, res, next) => {
   console.log('Starting');
   let user = req.currentUser;
