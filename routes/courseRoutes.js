@@ -77,8 +77,16 @@ router.get('/api/courses', asyncHandler(async (req, res, next) => {
 }));
 
 //GET specific course (The route was mistyped on the first attempt, I'm confident it's fixed now.)
+//UPDATE: This now returns the user that owns the course.
 router.get('/api/courses/:id', asyncHandler(async (req, res, next) => {
     const course = await Course.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          as: 'user',
+          attributes: { exclude: ['password','createdAt', 'updatedAt'] }
+        },
+      ],
       attributes: { exclude: ['createdAt', 'updatedAt'] }
     });
     console.log(course);
@@ -100,7 +108,7 @@ check('description')
   //validation error handling
   if (!errors.isEmpty()) {
     const errorMessages = errors.array().map(error => error.msg);
-    return res.status(401).json({ errors: errorMessages });
+    return res.status(400).json({ errors: errorMessages });
   }
   
   const course = await Course.create(req.body);
